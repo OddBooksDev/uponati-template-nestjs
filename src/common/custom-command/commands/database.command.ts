@@ -116,10 +116,10 @@ export class DatabaseCommand {
       }));
 
       // 4. 최근 10개의 마이그레이션만 최신순으로 출력
-      const recentMigrations = allMigrations.slice(-10).reverse();
+      const recentMigrations = allMigrations.reverse().slice(-20);
 
       recentMigrations.forEach((migration, index) => {
-        console.log(`${migration.status} ${index + 1} ${migration.name}`);
+        console.log(`${migration.status} ${Math.max(allMigrations.length - 20, 0) + index + 1} ${migration.name}`);
       });
     } catch (error) {
       console.error('Error showing migrations:', error);
